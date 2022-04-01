@@ -62,13 +62,44 @@ namespace oseroGame
 			return saveCount;
         }
 
+		//次に機会がおくばんちを返す。
+		//そして決まったそのばんちをおく。（boardidentitiyにいれる。）
 		public static int saveKikaiBannti(string color)
         {
+			int blankCount = mainCLASS.countBlank();
 			int[] saveCount = searchNextKikaiBannti();
-			int nextKikaiBannti = Array.IndexOf( saveCount,saveCount.Max());
+			int nextKikaiBannti = 0;
+			if (Convert.ToDouble(blankCount) >= (mainCLASS.x_size * mainCLASS.y_size * 0.4))
+			{
+				if(Array.IndexOf(saveCount, saveCount.Min()) == 0){
+                    for (int i=1;i<64;i++)
+                    {
+						int candidata = Array.IndexOf(saveCount, i);
+						if (candidata !=-1)
+                        {
+							nextKikaiBannti = candidata;
+							mainCLASS.boardIdentitiy[nextKikaiBannti] = color;
+							break;
+                        }
+                    }
+					//nextKikaiBannti = candidata;
+					
+				}
+                else
+                {
+					nextKikaiBannti = Array.IndexOf(saveCount, saveCount.Min());
+					
+				}
+
+			}
+			else
+			{				
+				nextKikaiBannti = Array.IndexOf(saveCount, saveCount.Max());
+			}
+
 			mainCLASS.boardIdentitiy[nextKikaiBannti] = color;
 			return nextKikaiBannti;
-        }
+		}
 		//①何個ひっくり返せるか調べる関数と、②出発地点から方向（引数）に①こひっくり返す
 		public static int countStoneReturn(int dirX, int dirY,int bannti)
 		{

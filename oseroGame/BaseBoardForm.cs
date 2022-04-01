@@ -168,6 +168,7 @@ namespace oseroGame
             if(canClickOrNot(forth)){
                 returnNumber = forth;
             }
+            mainCLASS.boardIdentitiy[returnNumber] = mainCLASS.kikaicolor;
             return returnNumber;
         }
 

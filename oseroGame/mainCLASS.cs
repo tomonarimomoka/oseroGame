@@ -12,6 +12,9 @@ namespace oseroGame
 {
     public class mainCLASS
     {
+//■■■■■■■■■■■■■■■仕様■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //このプログラムはhttps://bassy84.net/othello-syosin.htmlを参考に戦法を作っています。
+        //全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。
 
         //宣言
         public static readonly int x_size = 8;
@@ -51,7 +54,7 @@ namespace oseroGame
             board_kikaiForm boardKikai = new board_kikaiForm();
             board_kikaiForm refuleshKikai = new board_kikaiForm();
             //メインループ
-            while (checkBlank())
+            while (countBlank()!=0)
             {
                 //human
                 if (FirstOrSecond == 2 && gameCount == 0) {
@@ -118,16 +121,19 @@ namespace oseroGame
 
         }
 
-        public static bool checkBlank()
+        public static int countBlank()
         {
+            int count = 0;
             for (int i = 0; i < (x_size*y_size); i++)
             {
-                if (boardIdentitiy[i] == "")
+                if (boardIdentitiy[i] == " ")
                 {
-                    return false;
+                    count++;
+                    //return false;
                 }
+               
             }
-            return true;
+            return count;
         }
 
         
