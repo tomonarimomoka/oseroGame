@@ -31,6 +31,9 @@ namespace oseroGame
         //    }
         //}
         
+
+        //test
+        //コミットしたい
         private void board_kikaiForm_Load(object sender, EventArgs e)
         {
             if (mainCLASS.onlyShowFlag == false)
