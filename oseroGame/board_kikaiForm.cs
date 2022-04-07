@@ -48,6 +48,7 @@ namespace oseroGame
                 else
                 {
                     nextBannti = putCorner();
+                    mainCLASS.boardIdentitiy[nextBannti] = mainCLASS.kikaicolor;
                     AI.allDirReturn(nextBannti);
                     this.Close();
                 }

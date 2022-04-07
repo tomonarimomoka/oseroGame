@@ -154,7 +154,7 @@ namespace oseroGame
             int first = 0;
             int second = mainCLASS.x_size-1;
             int thard = AI.coordinateBannti(0, mainCLASS.y_size - 1);
-            int forth = mainCLASS.x_size * mainCLASS.y_size;
+            int forth = mainCLASS.x_size * mainCLASS.y_size -1;
             if (canClickOrNot(first))
             {
                 returnNumber=first;
@@ -168,7 +168,7 @@ namespace oseroGame
             if(canClickOrNot(forth)){
                 returnNumber = forth;
             }
-            mainCLASS.boardIdentitiy[returnNumber] = mainCLASS.kikaicolor;
+            //mainCLASS.boardIdentitiy[returnNumber] = mainCLASS.kikaicolor;
             return returnNumber;
         }
 

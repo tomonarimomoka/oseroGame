@@ -206,7 +206,7 @@ namespace oseroGame
 				for(int i = 0; i < 8; i++)
                 {
 					
-                    if (0 <= bannti && bannti <= 8)
+                    if (0 <= bannti && bannti <= 7)
                     {
 						x = bannti ;
 						y = i;
@@ -228,7 +228,7 @@ namespace oseroGame
 			for (int i = 0; i < 8; i++)
 			{
 				
-				if (0 <= bannti && bannti <= 8)
+				if (0 <= bannti && bannti <= 7)
 				{
 					x = bannti ;
 					y = i;
