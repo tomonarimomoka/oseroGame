@@ -73,7 +73,7 @@ namespace oseroGame
                     //再表示
                     boardHuman.ShowDialog();
 
-
+                    gameCount++;
                 }
 
 
@@ -93,7 +93,7 @@ namespace oseroGame
                 boardKikai.ShowDialog();
                 //modosu
                 onlyShowFlag = false;
-
+                gameCount++;
 
             }
             //
