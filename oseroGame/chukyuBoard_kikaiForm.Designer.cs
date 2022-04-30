@@ -1,7 +1,7 @@
 ﻿
 namespace oseroGame
 {
-    partial class board_humanForm
+    partial class chukyuBoard_kikaiForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,36 +29,25 @@ namespace oseroGame
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelHuman = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelHuman
+            // btn_pass
             // 
-            this.labelHuman.AutoSize = true;
-            this.labelHuman.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHuman.Location = new System.Drawing.Point(412, 43);
-            this.labelHuman.Name = "labelHuman";
-            this.labelHuman.Size = new System.Drawing.Size(154, 24);
-            this.labelHuman.TabIndex = 28;
-            this.labelHuman.Text = "あなたの番です";
-            this.labelHuman.Click += new System.EventHandler(this.labelHuman_Click);
+            this.btn_pass.Visible = false;
             // 
-            // board_humanForm
+            // chukyuBoard_kikaiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 858);
-            this.Controls.Add(this.labelHuman);
-            this.Name = "board_humanForm";
-            this.Text = "あなた";
-            this.Controls.SetChildIndex(this.labelHuman, 0);
+            this.BackColor = System.Drawing.Color.PeachPuff;
+            this.ClientSize = new System.Drawing.Size(708, 737);
+            this.Name = "chukyuBoard_kikaiForm";
+            this.Text = "中級モード_kikai";
+            this.Load += new System.EventHandler(this.chukyuBoard_kikaiForm_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelHuman;
     }
 }

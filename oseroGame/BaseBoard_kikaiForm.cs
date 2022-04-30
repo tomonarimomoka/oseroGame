@@ -11,12 +11,14 @@ using System.Windows.Forms;
 
 namespace oseroGame
 {
-    public partial class board_kikaiForm : BaseBoardForm
+    public partial class BaseBoard_kikaiForm : BaseBoardForm
     {
-        public board_kikaiForm()
+        public BaseBoard_kikaiForm()
         {
             InitializeComponent();
         }
+
+
 
         //ボードチェンジ
         //public override  void boardChenge(int bannti)
@@ -32,8 +34,6 @@ namespace oseroGame
         //}
         
 
-        //test
-        //コミットしたい
         private void board_kikaiForm_Load(object sender, EventArgs e)
         {
             if (mainCLASS.onlyShowFlag == false)

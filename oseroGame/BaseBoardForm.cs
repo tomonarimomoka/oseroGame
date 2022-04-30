@@ -15,10 +15,14 @@ namespace oseroGame
         public BaseBoardForm()
         {
             InitializeComponent();
+            //if(mainCLASS.now_PLAYER == mainCLASS.kikai)
+            //{
+            //    this.btn_pass.Enabled = false;
+            //}
         }
 
-
-        public static void checkAndSaveCurrentBannti(int currentBannti)
+      
+        public virtual void checkAndSaveCurrentBannti(int currentBannti)
         {
             DialogResult saveOrNo = MessageBox.Show("次に置く場所は" + currentBannti + "ですね？保存します。",
                 "",
@@ -63,7 +67,35 @@ namespace oseroGame
             mainCLASS.gameCount++;
         }
 
-        public bool canClickOrNot(int i)
+
+        //ひっくり返せたら　True
+        //ひっくり返せないなら　False
+        //public bool canClickOrNot(int i)
+        //{
+        //    int count = 0;
+        //    for (int x = -1; x <= 1; x++)
+        //    {
+        //        for (int y = -1; y <= 1; y++)
+        //        {
+        //            if (x == 0 && y == 0) { }
+        //            else
+        //            {
+        //                count += AI.countStoneReturn(x, y, i);
+        //            }
+        //        }
+        //    }
+        //    if (count == 0)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+
+        //何個ひっくり返せるか
+        public int howManyReturn(int i)
         {
             int count = 0;
             for (int x = -1; x <= 1; x++)
@@ -77,39 +109,59 @@ namespace oseroGame
                     }
                 }
             }
-            if (count == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+
+            return count;
         }
-        private void click_event(int i)
+       public virtual void click_event(int i)
         {
-            mainCLASS.bannti = i;
-            mainCLASS.x = AI.getX(i);
-            mainCLASS.y = AI.getY(i);
-            if (!canClickOrNot(i)){ 
-                MessageBox.Show(i + "はひっくり返せる場所がないのでおけません。", "", MessageBoxButtons.OK);
-                return;
+            if (mainCLASS.onlyShowFlag==false&&mainCLASS.alreadyClickFlag ==false)
+            {
+                mainCLASS.bannti = i;
+                mainCLASS.x = AI.getX(i);
+                mainCLASS.y = AI.getY(i);
+                if (howManyReturn(i) == 0)
+                {
+                    MessageBox.Show(i + "はひっくり返せる場所がないのでおけません。", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                string pic_board = string.Format("pic_board{0}", (i + 1).ToString().PadLeft(2, '0'));
+                string pic_p = string.Format("pic_p{0}", (i + 1).ToString().PadLeft(2, '0'));
+                string pic_c = string.Format("pic_c{0}", (i + 1).ToString().PadLeft(2, '0'));
+                string color = mainCLASS.now_PLAYER == mainCLASS.human ? mainCLASS.humancolor : mainCLASS.kikaicolor;
+
+
+                checkAndSaveCurrentBannti(i);
+                mainCLASS.boardIdentitiy[i] = color;
+                AI.checkBetween(i);
+                trueNextVisible();
+                falsePassVisible();
+                mainCLASS.alreadyClickFlag = true;
+                this.Close();
+                //this.btn_next.Visible = false;
             }
-            string pic_board = string.Format("pic_board{0}",(i +1).ToString().PadLeft(2, '0'));
-            string pic_p = string.Format("pic_p{0}", (i +1).ToString().PadLeft(2, '0'));
-            string pic_c = string.Format("pic_c{0}", (i+1).ToString().PadLeft(2, '0')) ;
-            string color = mainCLASS.now_PLAYER == mainCLASS.human ? mainCLASS.humancolor : mainCLASS.kikaicolor;
-           
-            
-            checkAndSaveCurrentBannti(i);
-            mainCLASS.boardIdentitiy[i] = color;
-            AI.checkBetween(i);
-            this.Close();
-            
-           
+
         }
     
-        
+        public virtual void trueNextVisible()
+        {
+            this.btn_next.Visible = true;
+        }
+
+        public virtual void falseNextVisible()
+        {
+            this.btn_next.Visible = false;
+        }
+        public virtual void falsePassVisible()
+        {
+            this.btn_pass.Visible = false;
+        }
+
+        public virtual void truePassVisible()
+        {
+            this.btn_pass.Visible = true;
+        }
+
         public void showCurrentBoard()
         {
             for (int i = 0; i < (mainCLASS.x_size * mainCLASS.y_size); i++)
@@ -155,17 +207,17 @@ namespace oseroGame
             int second = mainCLASS.x_size-1;
             int thard = AI.coordinateBannti(0, mainCLASS.y_size - 1);
             int forth = mainCLASS.x_size * mainCLASS.y_size -1;
-            if (canClickOrNot(first))
+            if (howManyReturn(first) > 0)
             {
                 returnNumber=first;
             }
-            if(canClickOrNot(second)){
+            if(howManyReturn(second) > 0){
                 returnNumber= second;
             }
-            if(canClickOrNot(thard)){
+            if(howManyReturn(thard) > 0){
                 returnNumber = thard;
             }
-            if(canClickOrNot(forth)){
+            if(howManyReturn(forth) > 0){
                 returnNumber = forth;
             }
             //mainCLASS.boardIdentitiy[returnNumber] = mainCLASS.kikaicolor;
@@ -222,7 +274,21 @@ namespace oseroGame
 
         private void BaseBoardForm_Load(object sender, EventArgs e)
         {
+            if (mainCLASS.now_PLAYER == 1)
+            {
+                if (mainCLASS.onlyShowFlag == false)
+                {
+                    truePassVisible();
+                    falseNextVisible();
+                }
+                else
+                {
+                    falsePassVisible();
+                    trueNextVisible();
+                }
+            }
             showCurrentBoard();
+           
         }
 
         private void pic_board10_Click(object sender, EventArgs e)
@@ -514,5 +580,17 @@ namespace oseroGame
         {
             mainCLASS.showWinner();
         }
+
+        private void btn_pass_Click(object sender, EventArgs e)
+        {
+            //パスを押す
+            mainCLASS.passFlag = true;
+            //string color = mainCLASS.now_PLAYER == mainCLASS.human ? mainCLASS.humancolor : mainCLASS.kikaicolor;
+            //
+
+            this.Close();
+        }
+
+
     }
 }

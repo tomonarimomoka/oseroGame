@@ -12,15 +12,21 @@ namespace oseroGame
 {
     public class mainCLASS
     {
-//■■■■■■■■■■■■■■■仕様■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+        //■■■■■■■■■■■■■■■仕様■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
         //このプログラムはhttps://bassy84.net/othello-syosin.htmlを参考に戦法を作っています。
         //全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。
+        //ウサギ帝石
+        //接待モード　おけるところにらんだむでおく。メッセージボックスでよいしょ！3つ以上ひっくり返せると褒める。
+        //初級モード　全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。おければ4角に置く。
+        //中級モード　帝石？
 
         //宣言
         public static readonly int x_size = 8;
         public static readonly int y_size = 8;
         public static int FirstOrSecond = 0;
+        public static string mode = "";
         public static int bannti = 0;
+        public static int lastHumanBannti = 0;
         public static int x = 0;
         public static int y = 0;
         public static string humancolor = "";
@@ -31,6 +37,8 @@ namespace oseroGame
         public static int kikai = 2;
         public static int gameCount = 0;
         public static bool onlyShowFlag = false;
+        public static bool passFlag = false;
+        public static bool alreadyClickFlag = false;
 
 
         //boardの正体を作る
@@ -38,7 +46,8 @@ namespace oseroGame
         public static readonly string BLANK = " ";
 
         [STAThread]
-        public static void Main() {
+        public static void Main()
+        {
             //Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -46,62 +55,96 @@ namespace oseroGame
 
             string[] mainBoard = makeBoard(boardIdentitiy);
 
-            //chooseFirstOrSecondForm chooseForm = new chooseFirstOrSecondForm();
-            //chooseForm.Show();
-            //chooseForm.Close();
-            board_humanForm boardHuman = new board_humanForm();
-            board_humanForm refleshHuman = new board_humanForm();
-            board_kikaiForm boardKikai = new board_kikaiForm();
-            board_kikaiForm refuleshKikai = new board_kikaiForm();
+            //board_humanForm boardHuman = new board_humanForm();
+
+            // BaseBoard_kikaiForm boardKikai = new BaseBoard_kikaiForm();
+           
+            
+            
+
             //メインループ
-            while (countBlank()!=0)
+            if (mode == "settai")
+            {
+                settaiBoard_kikaiForm boardSettaiKikai = new settaiBoard_kikaiForm();
+                settaiBoard_human boardSettaiHuman = new settaiBoard_human();
+                mainLoop(boardSettaiKikai, boardSettaiHuman);
+            }
+            else if (mode == "syokyu")
+            {
+                syokyuBoard_kikaiForm boardSyokyuKikai = new syokyuBoard_kikaiForm();
+                syokyuBoard_Human boardSYokyuHuman = new syokyuBoard_Human();
+                mainLoop(boardSyokyuKikai, boardSYokyuHuman);
+            }
+            else if (mode == "chukyu")
+            {
+                chukyuBoard_kikaiForm boardChukyuKikai = new chukyuBoard_kikaiForm();
+                chukyuBoard_Human boardChukyuHuman = new chukyuBoard_Human();
+                mainLoop(boardChukyuKikai, boardChukyuHuman);
+            }
+
+
+        }
+
+        private static void mainLoop(Form boardKikai,Form boardHuman)
+        {
+            while (countBlank() != 0)
             {
                 //human
-                if (FirstOrSecond == 2 && gameCount == 0) {
+                //if(FirstOrSecond ==1&&gameCount==0)
+                if (FirstOrSecond == 2 && gameCount == 0)
+                {
                     //
                 }
                 else
                 {
                     boardHuman.ShowDialog();
-                    
-                    now_PLAYER = chengePlayer(now_PLAYER);
-                    //gameCount++;
-                    //if (gameCount > 9)
-                    //{
-                    //    break;
-                    //}
-                    //再表示
-                    boardHuman.ShowDialog();
 
-                    gameCount++;
+                    now_PLAYER = chengePlayer(now_PLAYER);
+
+                    if (passFlag == false)
+                    {
+                        //再表示
+                        boardHuman.ShowDialog();
+                        lastHumanBannti = bannti;
+                        alreadyClickFlag = false;
+                        //gameCount++;
+                    }
+                    else
+                    {
+                        passFlag = false;
+                    }
                 }
 
 
                 //kikai
 
-                 boardKikai.ShowDialog();
-                onlyShowFlag = true;
-                
-                now_PLAYER = chengePlayer(now_PLAYER);
-                //gameCount++;
-                //if (gameCount > 9)
-                //{
-                    
-                //    break;
-                //}
-                //再表示
                 boardKikai.ShowDialog();
-                //modosu
-                onlyShowFlag = false;
-                gameCount++;
+                onlyShowFlag = true;
+
+                now_PLAYER = chengePlayer(now_PLAYER);
+
+                if (passFlag == false) { 
+                    //再表示
+                    boardKikai.ShowDialog();
+                    //modosu
+                    onlyShowFlag = false;
+                    alreadyClickFlag = false;
+                    //gameCount++;
+                }
+                else
+                {
+                    passFlag = false;
+                }
 
             }
-            //
-            boardHuman.Close();
-            boardKikai.Close();
-            //勝敗判定
-            showWinner();
-        }
+      
+        boardHuman.Close();
+        boardKikai.Close();
+        //勝敗判定
+        showWinner();
+
+        gameCount++;
+    }
 
         private static string[] makeBoard(string[] someBoard)
         {
@@ -153,7 +196,8 @@ namespace oseroGame
             if (ShiroCount > KuroCount)
             {
                 MessageBox.Show(ShiroCount + "対" + KuroCount + "であなたの勝ちです✨");
-            }else if (ShiroCount == KuroCount)
+            }
+            else if (ShiroCount == KuroCount)
             {
                 MessageBox.Show(ShiroCount + "対" + KuroCount + "で引き分けです！！");
             }

@@ -54,17 +54,47 @@
     <Compile Include="BaseBoardForm.Designer.cs">
       <DependentUpon>BaseBoardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="board_humanForm.cs">
+    <Compile Include="BaseBoard_kikaiForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="board_humanForm.Designer.cs">
-      <DependentUpon>board_humanForm.cs</DependentUpon>
+    <Compile Include="BaseBoard_kikaiForm.Designer.cs">
+      <DependentUpon>BaseBoard_kikaiForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="board_kikaiForm.cs">
+    <Compile Include="chukyuBoard_kikaiForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="board_kikaiForm.Designer.cs">
-      <DependentUpon>board_kikaiForm.cs</DependentUpon>
+    <Compile Include="chukyuBoard_kikaiForm.Designer.cs">
+      <DependentUpon>chukyuBoard_kikaiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chukyuBoard_Human.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chukyuBoard_Human.Designer.cs">
+      <DependentUpon>chukyuBoard_Human.cs</DependentUpon>
+    </Compile>
+    <Compile Include="syokyuBoard_Human.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="syokyuBoard_Human.Designer.cs">
+      <DependentUpon>syokyuBoard_Human.cs</DependentUpon>
+    </Compile>
+    <Compile Include="settaiBoard_human.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settaiBoard_human.Designer.cs">
+      <DependentUpon>settaiBoard_human.cs</DependentUpon>
+    </Compile>
+    <Compile Include="syokyuBoard_kikaiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="syokyuBoard_kikaiForm.Designer.cs">
+      <DependentUpon>syokyuBoard_kikaiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="settaiBoard_kikaiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settaiBoard_kikaiForm.Designer.cs">
+      <DependentUpon>settaiBoard_kikaiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="mainCLASS.cs" />
     <Compile Include="chooseFirstOrSecondForm.cs">
@@ -87,11 +117,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="board_humanForm.resx">
-      <DependentUpon>board_humanForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="board_kikaiForm.resx">
-      <DependentUpon>board_kikaiForm.cs</DependentUpon>
+    <EmbeddedResource Include="BaseBoard_kikaiForm.resx">
+      <DependentUpon>BaseBoard_kikaiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="chooseFirstOrSecondForm.resx">
       <DependentUpon>chooseFirstOrSecondForm.cs</DependentUpon>
@@ -99,9 +126,27 @@
     <EmbeddedResource Include="BaseBoardForm.resx">
       <DependentUpon>BaseBoardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="chukyuBoard_Human.resx">
+      <DependentUpon>chukyuBoard_Human.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chukyuBoard_kikaiForm.resx">
+      <DependentUpon>chukyuBoard_kikaiForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settaiBoard_human.resx">
+      <DependentUpon>settaiBoard_human.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settaiBoard_kikaiForm.resx">
+      <DependentUpon>settaiBoard_kikaiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="syokyuBoard_Human.resx">
+      <DependentUpon>syokyuBoard_Human.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="syokyuBoard_kikaiForm.resx">
+      <DependentUpon>syokyuBoard_kikaiForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

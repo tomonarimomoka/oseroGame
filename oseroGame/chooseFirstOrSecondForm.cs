@@ -53,6 +53,19 @@ namespace oseroGame
                     mainCLASS.now_PLAYER = mainCLASS.kikai;
                 }
                 //return;
+
+              if(cmbSelectMode.SelectedIndex == 1)
+                {
+                    mainCLASS.mode = "settai";
+
+                }else if(cmbSelectMode.SelectedIndex == 2)
+                {
+                    mainCLASS.mode = "syokyu";
+                }else if(cmbSelectMode.SelectedIndex == 3)
+                {
+                    mainCLASS.mode = "chukyu";
+                }
+
             }
             Close();
 
@@ -77,6 +90,31 @@ namespace oseroGame
 
 
             //}
+        }
+
+        private void chooseFirstOrSecondForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbSelectMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chooseFirstOrSecond_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

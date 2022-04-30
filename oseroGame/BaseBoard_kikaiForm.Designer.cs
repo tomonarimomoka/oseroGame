@@ -1,7 +1,7 @@
 ﻿
 namespace oseroGame
 {
-    partial class board_kikaiForm
+    partial class BaseBoard_kikaiForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,21 +36,20 @@ namespace oseroGame
             // 
             this.labelKikai.AutoSize = true;
             this.labelKikai.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelKikai.Location = new System.Drawing.Point(541, 61);
-            this.labelKikai.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelKikai.Location = new System.Drawing.Point(260, 21);
             this.labelKikai.Name = "labelKikai";
             this.labelKikai.Size = new System.Drawing.Size(142, 24);
             this.labelKikai.TabIndex = 28;
             this.labelKikai.Text = "機械の番です";
             // 
-            // board_kikaiForm
+            // BaseBoard_kikaiForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1318, 1083);
+            this.ClientSize = new System.Drawing.Size(701, 726);
             this.Controls.Add(this.labelKikai);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "board_kikaiForm";
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Name = "BaseBoard_kikaiForm";
             this.Text = "機械";
             this.Load += new System.EventHandler(this.board_kikaiForm_Load);
             this.Controls.SetChildIndex(this.labelKikai, 0);
