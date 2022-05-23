@@ -64,6 +64,9 @@ namespace oseroGame
                 }else if(cmbSelectMode.SelectedIndex == 3)
                 {
                     mainCLASS.mode = "chukyu";
+                }else if(cmbSelectMode.SelectedIndex == 4)
+                {
+                    mainCLASS.mode = "joukyu";
                 }
 
             }

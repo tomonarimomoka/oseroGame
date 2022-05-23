@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace oseroGame
 {
-    public partial class syokyuBoard_Human : BaseBoardForm
+    public partial class syokyuBoard_human : BaseBoardForm
     {
-        public syokyuBoard_Human()
+        public syokyuBoard_human()
         {
             InitializeComponent();
         }

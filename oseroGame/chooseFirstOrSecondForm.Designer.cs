@@ -101,7 +101,8 @@ namespace oseroGame
             "",
             "接待モード",
             "初級モード",
-            "中級モード"});
+            "中級モード",
+            "上級モード"});
             this.cmbSelectMode.Location = new System.Drawing.Point(250, 152);
             this.cmbSelectMode.Margin = new System.Windows.Forms.Padding(2);
             this.cmbSelectMode.Name = "cmbSelectMode";
@@ -124,7 +125,7 @@ namespace oseroGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 344);
+            this.ClientSize = new System.Drawing.Size(561, 344);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbSelectMode);
             this.Controls.Add(this.label1);

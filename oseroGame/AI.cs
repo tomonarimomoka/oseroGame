@@ -30,7 +30,7 @@ namespace oseroGame
 		public static int [] searchNextKikaiBannti()
         {
 			int countReturnNumber = 0;
-			int []saveCount = new int[64]; 
+			int []arrayPoint = new int[64]; 
 			for(int i = 0; i <= 63; i++)
             {
 				countReturnNumber = 0;
@@ -55,24 +55,26 @@ namespace oseroGame
                 {
 					countReturnNumber = 0;
                 }
-				saveCount[i] = countReturnNumber;
+				arrayPoint[i] = countReturnNumber;
             }
 
 
-			return saveCount;
+			return arrayPoint;
         }
 
-		//次に機会がおくばんちを返す。
+		//次に機械がおくばんちを返す。
 		//そして決まったそのばんちをおく。（boardidentitiyにいれる。）
 		public static int saveKikaiBannti(string color)
         {
 			int blankCount = mainCLASS.countBlank();
 			int[] saveCount = searchNextKikaiBannti();
 			int nextKikaiBannti = 0;
+			//要修正
 			if (Convert.ToDouble(blankCount) >= (mainCLASS.x_size * mainCLASS.y_size * 0.4))
 			{
+				//もし一番大きい数が０なら
 				if(Array.IndexOf(saveCount, saveCount.Min()) == 0){
-                    for (int i=1;i<64;i++)
+                    for (int i=1;i< mainCLASS.x_size * mainCLASS.y_size; i++)
                     {
 						int candidata = Array.IndexOf(saveCount, i);
 						if (candidata !=-1)

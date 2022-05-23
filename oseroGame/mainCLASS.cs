@@ -13,20 +13,24 @@ namespace oseroGame
     public class mainCLASS
     {
         //■■■■■■■■■■■■■■■仕様■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-        //このプログラムはhttps://bassy84.net/othello-syosin.htmlを参考に戦法を作っています。
-        //全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。
-        //ウサギ帝石
-        //接待モード　おけるところにらんだむでおく。メッセージボックスでよいしょ！3つ以上ひっくり返せると褒める。
-        //初級モード　全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。おければ4角に置く。
-        //中級モード　帝石？
+        //このプログラムは　https://bassy84.net/othello-syosin.html　を参考に戦法を作っています。
+        //https://uguisu.skr.jp/othello/2-1.html　も参考にしている
 
+        //全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。
+
+        //接待モード　おけるところにらんだむでおく。メッセージボックスでよいしょ！3つ以上ひっくり返せると褒める。
+        //初級モード　一番多くひっくり返す番地におく。
+        //中級モード　全体の60%が埋まるまで、機械は０以外の最も少なくひっくり返す場所に置く。おければ4角に置く。
+        //上級級モード　帝石？
+        //ぴえん＝白　ねこ＝黒
+　
         //宣言
         public static readonly int x_size = 8;
         public static readonly int y_size = 8;
         public static int FirstOrSecond = 0;
         public static string mode = "";
         public static int bannti = 0;
-        public static int lastHumanBannti = 0;
+        public static int lastHumanBannti = 0;//定石の為にも使う使う。ひとつ前の人が打った番地を保存する
         public static int x = 0;
         public static int y = 0;
         public static string humancolor = "";
@@ -39,6 +43,8 @@ namespace oseroGame
         public static bool onlyShowFlag = false;
         public static bool passFlag = false;
         public static bool alreadyClickFlag = false;
+        
+
 
 
         //boardの正体を作る
@@ -72,14 +78,18 @@ namespace oseroGame
             else if (mode == "syokyu")
             {
                 syokyuBoard_kikaiForm boardSyokyuKikai = new syokyuBoard_kikaiForm();
-                syokyuBoard_Human boardSYokyuHuman = new syokyuBoard_Human();
+                syokyuBoard_human boardSYokyuHuman = new syokyuBoard_human();
                 mainLoop(boardSyokyuKikai, boardSYokyuHuman);
             }
             else if (mode == "chukyu")
             {
                 chukyuBoard_kikaiForm boardChukyuKikai = new chukyuBoard_kikaiForm();
-                chukyuBoard_Human boardChukyuHuman = new chukyuBoard_Human();
+                chukyuBoard_human boardChukyuHuman = new chukyuBoard_human();
                 mainLoop(boardChukyuKikai, boardChukyuHuman);
+            }else if(mode == "joukyu"){
+                joukyuBoard_kikai boardJoukyuKikai = new joukyuBoard_kikai();
+                joukyuBoard_human boardJoukyuHuman = new joukyuBoard_human();
+                mainLoop(boardJoukyuKikai, boardJoukyuHuman);
             }
 
 

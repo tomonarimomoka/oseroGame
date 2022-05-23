@@ -1,7 +1,7 @@
 ﻿
 namespace oseroGame
 {
-    partial class BaseBoard_kikaiForm
+    partial class joukyuBoard_human
     {
         /// <summary>
         /// Required designer variable.
@@ -29,30 +29,31 @@ namespace oseroGame
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelKikai = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // labelKikai
+            // label1
             // 
-            this.labelKikai.AutoSize = true;
-            this.labelKikai.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelKikai.Location = new System.Drawing.Point(260, 21);
-            this.labelKikai.Name = "labelKikai";
-            this.labelKikai.Size = new System.Drawing.Size(142, 24);
-            this.labelKikai.TabIndex = 28;
-            this.labelKikai.Text = "機械の番です";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(233, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(257, 36);
+            this.label1.TabIndex = 197;
+            this.label1.Text = "あなたの番です🔥";
             // 
-            // BaseBoard_kikaiForm
+            // joukyuBoard_human
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(701, 726);
-            this.Controls.Add(this.labelKikai);
-            this.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.Name = "BaseBoard_kikaiForm";
-            this.Text = "機械";
-            this.Load += new System.EventHandler(this.board_kikaiForm_Load);
-            this.Controls.SetChildIndex(this.labelKikai, 0);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(800, 717);
+            this.Controls.Add(this.label1);
+            this.Name = "joukyuBoard_human";
+            this.Text = "joukyu_human";
+            this.Controls.SetChildIndex(this.btn_next, 0);
+            this.Controls.SetChildIndex(this.btn_pass, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -60,6 +61,6 @@ namespace oseroGame
 
         #endregion
 
-        private System.Windows.Forms.Label labelKikai;
+        private System.Windows.Forms.Label label1;
     }
 }

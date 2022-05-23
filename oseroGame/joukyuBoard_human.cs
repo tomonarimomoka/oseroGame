@@ -10,12 +10,13 @@ using System.Windows.Forms;
 
 namespace oseroGame
 {
-    public partial class chukyuBoard_human : BaseBoardForm
+    public partial class joukyuBoard_human : BaseBoardForm
     {
-        public chukyuBoard_human()
+        public joukyuBoard_human()
         {
             InitializeComponent();
         }
+
         public override void trueNextVisible()
         {
             this.btn_next.Visible = true;
@@ -40,5 +41,13 @@ namespace oseroGame
 
             this.btn_pass.Visible = true;
         }
+
+        //これすらもいらない
+        //public override void click_event(int i)
+        //{
+        //    base.click_event(i);
+        //    mainCLASS.lastHumanBannti = i;
+        //}
     }
 }
+

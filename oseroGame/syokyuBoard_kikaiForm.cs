@@ -34,7 +34,7 @@ namespace oseroGame
                     }
                 }
 
-                if (0 < blankCount)
+                if (blankCount > 0)
                 {
                     Random random = new Random();
                     int randomvalue = random.Next(blankCount);

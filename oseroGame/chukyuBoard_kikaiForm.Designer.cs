@@ -29,11 +29,22 @@ namespace oseroGame
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_pass
             // 
             this.btn_pass.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(211, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(255, 36);
+            this.label1.TabIndex = 196;
+            this.label1.Text = "機械がおきます。";
             // 
             // chukyuBoard_kikaiForm
             // 
@@ -41,13 +52,20 @@ namespace oseroGame
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.ClientSize = new System.Drawing.Size(708, 737);
+            this.Controls.Add(this.label1);
             this.Name = "chukyuBoard_kikaiForm";
             this.Text = "中級モード_kikai";
             this.Load += new System.EventHandler(this.chukyuBoard_kikaiForm_Load);
+            this.Controls.SetChildIndex(this.btn_next, 0);
+            this.Controls.SetChildIndex(this.btn_pass, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
     }
 }

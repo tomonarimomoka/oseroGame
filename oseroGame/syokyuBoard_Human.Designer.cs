@@ -1,7 +1,7 @@
 ﻿
 namespace oseroGame
 {
-    partial class syokyuBoard_Human
+    partial class syokyuBoard_human
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,18 @@ namespace oseroGame
         /// </summary>
         private void InitializeComponent()
         {
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(233, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(228, 36);
+            this.label1.TabIndex = 195;
+            this.label1.Text = "あなたの番です";
             // 
             // syokyuBoard_Human
             // 
@@ -37,12 +48,19 @@ namespace oseroGame
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(774, 710);
+            this.Controls.Add(this.label1);
             this.Name = "syokyuBoard_Human";
             this.Text = "初級モード_Human";
+            this.Controls.SetChildIndex(this.btn_next, 0);
+            this.Controls.SetChildIndex(this.btn_pass, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label1;
     }
 }

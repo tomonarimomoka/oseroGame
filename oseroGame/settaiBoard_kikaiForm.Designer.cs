@@ -30,6 +30,7 @@ namespace oseroGame
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_pass
@@ -47,18 +48,31 @@ namespace oseroGame
             this.label1.TabIndex = 195;
             this.label1.Text = "♡ご利用いただきありがとうございます♡";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(204, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(255, 36);
+            this.label2.TabIndex = 196;
+            this.label2.Text = "機械がおきます。";
+            // 
             // settaiBoard_kikaiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LavenderBlush;
             this.ClientSize = new System.Drawing.Size(753, 712);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "settaiBoard_kikaiForm";
             this.Text = "接待モード_kikai";
             this.Load += new System.EventHandler(this.settaiBoard_kikaiForm_Load);
+            this.Controls.SetChildIndex(this.btn_next, 0);
             this.Controls.SetChildIndex(this.btn_pass, 0);
             this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,5 +81,6 @@ namespace oseroGame
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

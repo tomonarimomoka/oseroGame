@@ -48,12 +48,15 @@ namespace oseroGame
             checkAndSaveCurrentBannti(i);
             mainCLASS.boardIdentitiy[i] = color;
             AI.checkBetween(i);
-            this.btn_pass.Visible = false;
+            trueNextVisible();
+            falsePassVisible();
+            mainCLASS.alreadyClickFlag = true;
+
+            //this.btn_pass.Visible = false;
             if (returnCount >= 3)
             {
                 MessageBox.Show(returnCount + "個もひっくり返せました！すごい♡♡♡", "", MessageBoxButtons.OK);
             }
-            trueNextVisible();
             this.Close();
 
 
