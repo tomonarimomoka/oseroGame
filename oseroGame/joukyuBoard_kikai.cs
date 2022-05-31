@@ -44,6 +44,9 @@ namespace oseroGame
 
         //定石タイプを変数にもたせる
         string josekiType = "";
+        int arraySize = 0;
+
+
         //ウサギ配列
         //int[,] usagiArray = new int[11,11];
         int[,] usagiArray = 
@@ -84,8 +87,8 @@ namespace oseroGame
         };
 
         //実際においてひっくり返す。
-        //ひっくり返せる駒がないならFalseを返す。
-        public  bool putKikai(int bannti)
+        //ひっくり返せる駒がないならひっくり返さない
+        public  void putKikai(int bannti)
         {
             //もしひっくり返せるなら
             if (howManyReturn(bannti) != 0)
@@ -94,14 +97,32 @@ namespace oseroGame
                 mainCLASS.boardIdentitiy[bannti] = mainCLASS.kikaicolor;
                 //ひっくり返す
                 AI.allDirReturn(bannti);
+                //return true;
+            }
+            //else
+            //{
+            //    //return false;
+            //}
+        }
+         
+
+        public bool canPutOrNot(int bannti)
+        {
+            //もしひっくり返せるなら
+            if (howManyReturn(bannti) != 0)
+            {
+                ////機会がおく。
+                //mainCLASS.boardIdentitiy[bannti] = mainCLASS.kikaicolor;
+                ////ひっくり返す
+                //AI.allDirReturn(bannti);
                 return true;
             }
             else
             {
                 return false;
             }
+
         }
-         
         //ここでどこに打つか決める
         private void joukyuBoard_kikai_Load(object sender, EventArgs e)
         {
@@ -122,45 +143,48 @@ namespace oseroGame
                     {
                         putKikai(AI.coordinateBannti(5, 4));
                     }
-                    //i=1のとき、おけるタイプを選ぶ（ウサギORウシ）
-                    if(i == 1)
+                    else if (i == 1)
                     {
-                        int usagi1 = AI.coordinateBannti(usagiArray[i, 0], usagiArray[i, 1]);
-                        int usi1 = AI.coordinateBannti(usiArray[i, 0], usiArray[i, 1]);
-                        int nezu1 = AI.coordinateBannti(nezumiArray[1, 0], nezumiArray[i, 1]);
-                        if( howManyReturn(usagi1) != 0){
-                            josekiType = "usagi";
-                            putKikai(usagi1);
-                        }else if(howManyReturn(usi1) != 0)
+                        //newLogic!!
+                        if (mainCLASS.lastHumanBannti == 43)
                         {
-                            josekiType = "usi";
-                            putKikai(usi1);
-                        }else if(howManyReturn(nezu1) != 0)
+                            josekiType = "usagi";
+                            putFromFront(usagiArray,10);
+                        }
+                        else if (mainCLASS.lastHumanBannti == 29)
                         {
                             josekiType = "nezu";
-                            putKikai(nezu1);
+                            putFromFront(nezumiArray,5);
                         }
-                    }else  if (1<i && i < 11)
-                    {
-
-                        if (josekiType == "usagi")
+                        else if (mainCLASS.lastHumanBannti == 20)
                         {
-                            //usagi
-                            putJouseki(AI.coordinateBannti(usagiArray[i - 1, 0], usagiArray[i - 1, 1]), AI.coordinateBannti(usagiArray[i, 0], usagiArray[i, 1]));
-
+                            josekiType = "usi";
+                            putFromFront(usiArray,9);
                         }
-                        else if (josekiType == "usi")
+                        else if (mainCLASS.lastHumanBannti == 34)
                         {
-                            //usagi
-                            putJouseki(AI.coordinateBannti(usiArray[i - 1, 0], usiArray[i - 1, 1]), AI.coordinateBannti(usiArray[i, 0], usiArray[i, 1]));
-
+                            josekiType = "usagi";
+                            putFromFront(usagiArray,10);
                         }
 
                     }
+                    else
+                    {
+                        switch (josekiType)
+                        {
+                            case "usagi":
+                                putFromFront(usagiArray,10);
+                                break;
+                            case "nezu":
+                                putFromFront(nezumiArray,5);
+                                break;
+                            case "usi":
+                                putFromFront(usiArray,9);
+                                break;
 
-
-
-
+                        }
+                            
+                     }
                     this.Close();
                 }
                 else
@@ -196,7 +220,40 @@ namespace oseroGame
         }
 
 
-     
+
+
+
+
+        //お試しロジック
+        //前から空いてる配列があればおく。
+        public  void putFromFront(int[,] array,int arraySize)
+        {
+            for (int i = 0; i< arraySize; i++)
+            {
+                //空かつひっくり返せたらおく。
+                int candidateBannti = AI.coordinateBannti(array[i, 0], array[i, 1]);
+                //からかつひっくり返せたら置く。
+                if ( mainCLASS.boardIdentitiy[ candidateBannti] == " "&& canPutOrNot(candidateBannti))
+                {
+                    //おけたらぬける
+                    putKikai(candidateBannti);
+                    break;
+                //    if (!putKikai(candidateBannti))
+                //    {
+                //        //putKikai(candidateBannti);
+                //        break;
+                //    }
+                   
+                   
+                }
+            }
+
+        }
+
+
+
     }
+
+
 }
 
