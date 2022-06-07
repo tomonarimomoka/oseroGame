@@ -45,21 +45,22 @@ namespace oseroGame
         //定石タイプを変数にもたせる
         string josekiType = "";
         int arraySize = 0;
+        bool fillJosekiFlag = false;
 
 
         //ウサギ配列
         //int[,] usagiArray = new int[11,11];
         int[,] usagiArray = 
-        {   { 5, 4 },
-            { 3, 5 }, 
-            { 2, 4 }, 
-            { 5, 3 }, 
-            { 4, 2 }, 
-            { 2, 5 }, 
-            { 3, 2 }, 
-            { 5, 5 },
-            { 4, 5 },
-            { 3, 6 }
+        {   { 5, 4 }, //37
+            { 3, 5 }, //43
+            { 2, 4 }, //34
+            { 5, 3 }, //27
+            { 4, 2 }, //20
+            { 2, 5 }, //42
+            { 3, 2 }, //11
+            { 5, 5 }, //45
+            { 4, 5 }, //29
+            { 3, 6 }  //51
         };
 
         //牛はいれつ
@@ -149,41 +150,61 @@ namespace oseroGame
                         if (mainCLASS.lastHumanBannti == 43)
                         {
                             josekiType = "usagi";
-                            putFromFront(usagiArray,10);
+                            arraySize = 10;
+                            putFromFront(usagiArray, arraySize);
                         }
                         else if (mainCLASS.lastHumanBannti == 29)
                         {
                             josekiType = "nezu";
-                            putFromFront(nezumiArray,5);
+                            arraySize = 5;
+                            putFromFront(nezumiArray, arraySize);
                         }
                         else if (mainCLASS.lastHumanBannti == 20)
                         {
                             josekiType = "usi";
-                            putFromFront(usiArray,9);
+                            arraySize = 9;
+                            putFromFront(usiArray, arraySize);
                         }
                         else if (mainCLASS.lastHumanBannti == 34)
                         {
                             josekiType = "usagi";
-                            putFromFront(usagiArray,10);
+                            arraySize = 10;
+                            putFromFront(usagiArray, arraySize);
                         }
 
                     }
                     else
                     {
-                        switch (josekiType)
+                        
+                        if(!fillJosekiFlag)
                         {
-                            case "usagi":
-                                putFromFront(usagiArray,10);
-                                break;
-                            case "nezu":
-                                putFromFront(nezumiArray,5);
-                                break;
-                            case "usi":
-                                putFromFront(usiArray,9);
-                                break;
+                            switch (josekiType)
+                            {
+                                case "usagi":
+                                    fillJosekiFlag = putFromFront(usagiArray, arraySize);
+                                    break;
+                                case "nezu":
+                                    fillJosekiFlag = putFromFront(nezumiArray, arraySize);
+                                    break;
+                                case "usi":
+                                    fillJosekiFlag = putFromFront(usiArray, arraySize);
+                                    break;
 
+                            }
                         }
-                            
+                        //うえのパターンだけど打てなくてFilljosekiFlagが変わるかもだから、もう一度条件
+                        //定石が終わったら、中級モードと同じ。
+                        if (fillJosekiFlag)
+                        {
+                            AI.allDirReturn(AI.saveKikaiBannti(mainCLASS.kikaicolor));
+                        }
+                        
+
+
+
+
+
+
                      }
                     this.Close();
                 }
@@ -226,27 +247,33 @@ namespace oseroGame
 
         //お試しロジック
         //前から空いてる配列があればおく。
-        public  void putFromFront(int[,] array,int arraySize)
+        //定石全部埋まってるか調べられる。埋まってたらtrue
+        public  bool putFromFront(int[,] array,int arraySize)
         {
-            for (int i = 0; i< arraySize; i++)
+            bool returnFlag = false;
+            for (int i = 0; i<= arraySize; i++)
             {
-                //空かつひっくり返せたらおく。
-                int candidateBannti = AI.coordinateBannti(array[i, 0], array[i, 1]);
-                //からかつひっくり返せたら置く。
-                if ( mainCLASS.boardIdentitiy[ candidateBannti] == " "&& canPutOrNot(candidateBannti))
+                if(i == arraySize)
                 {
-                    //おけたらぬける
-                    putKikai(candidateBannti);
-                    break;
-                //    if (!putKikai(candidateBannti))
-                //    {
-                //        //putKikai(candidateBannti);
-                //        break;
-                //    }
-                   
-                   
+                    returnFlag = true;
                 }
+                else
+                {
+                    //空かつひっくり返せたらおく。
+                    int candidateBannti = AI.coordinateBannti(array[i, 0], array[i, 1]);
+                    //からかつひっくり返せたら置く。
+                    if (mainCLASS.boardIdentitiy[candidateBannti] == " " && canPutOrNot(candidateBannti))
+                    {
+                        //おけたらぬける
+                        putKikai(candidateBannti);
+                        break;
+                    }
+                }
+                
+
             }
+
+            return returnFlag;
 
         }
 

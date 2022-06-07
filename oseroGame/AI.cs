@@ -70,27 +70,37 @@ namespace oseroGame
 			int[] saveCount = searchNextKikaiBannti();
 			int nextKikaiBannti = 0;
 			//要修正
+			//6割埋まっていない場合
 			if (Convert.ToDouble(blankCount) >= (mainCLASS.x_size * mainCLASS.y_size * 0.4))
 			{
-				//もし一番大きい数が０なら
-				if(Array.IndexOf(saveCount, saveCount.Min()) == 0){
-                    for (int i=1;i< mainCLASS.x_size * mainCLASS.y_size; i++)
+				//1番少なくひっくり返せる場所が０の場合
+                if (saveCount.Min()　== 0)
+                {
+					//ひっくり返せる数=iとしてる
+					//ひっくり返せる最大の数は32
+					for (int i = 1; i < mainCLASS.x_size * 4; i++)
                     {
-						int candidata = Array.IndexOf(saveCount, i);
-						if (candidata !=-1)
+                        int candidata = Array.IndexOf(saveCount, i);
+						//もしひっくり返せる場所がi個の場所があれば
+                        if (candidata != -1)
                         {
-							nextKikaiBannti = candidata;
-							mainCLASS.boardIdentitiy[nextKikaiBannti] = color;
-							break;
+							
+                            nextKikaiBannti = candidata;
+                            //mainCLASS.boardIdentitiy[nextKikaiBannti] = color;
+                            break;
                         }
-                    }
-					//nextKikaiBannti = candidata;
-					
-				}
+
+                        if (i == mainCLASS.x_size * 4)
+                        {
+							//ダイアログだけ出してなにもしない
+							MessageBox.Show("今回ははひっくり返せる場所がないので置きません。", "", MessageBoxButtons.OK);
+						}
+					}                   
+                }
                 else
                 {
+					//一番少なくひっくり返せる場所に置く。
 					nextKikaiBannti = Array.IndexOf(saveCount, saveCount.Min());
-					
 				}
 
 			}
@@ -98,10 +108,11 @@ namespace oseroGame
 			{				
 				nextKikaiBannti = Array.IndexOf(saveCount, saveCount.Max());
 			}
-
+			//実際に置く。
 			mainCLASS.boardIdentitiy[nextKikaiBannti] = color;
 			return nextKikaiBannti;
 		}
+
 		//①何個ひっくり返せるか調べる関数と、②出発地点から方向（引数）に①こひっくり返す
 		public static int countStoneReturn(int dirX, int dirY,int bannti)
 		{
